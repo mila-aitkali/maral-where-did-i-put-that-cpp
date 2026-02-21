@@ -5,6 +5,27 @@
 
 #include "../src/where.hpp"
 
-TEST_CASE( "it returns Hello World" ) {
-    REQUIRE( hello() == "Hello World!" );
+
+TEST_CASE("find char returns index or -1") {
+    const char* s = "Practice coding every day";
+
+    REQUIRE(find(s, 'c') == 3);
+    REQUIRE(find(s, ' ') == 8);
+    REQUIRE(find(s, 'z') == -1);
+}
+
+TEST_CASE("find substring returns index or -1") {
+    const char* s = "Practice coding every day";
+
+    REQUIRE(find(s, "coding") == 9);
+    REQUIRE(find(s, "day") == 22);
+    REQUIRE(find(s, "Java") == -1);
+}
+
+TEST_CASE("substring edge cases") {
+    const char* s = "Practice coding every day";
+
+    REQUIRE(find(s, "") == 0);               // empty substring
+    REQUIRE(find(s, "Practice") == 0);       // at beginning
+    REQUIRE(find(s, "every") == 16);         // mid-string
 }
